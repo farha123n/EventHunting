@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useLoaderData } from 'react-router';
+import Events from '../Component/Events';
 const Home = () => {
+
+    const data=useLoaderData()
+      console.log(data)
     useEffect(() => {
         AOS.init({ duration: 1000 });
     }, []);
@@ -41,7 +46,9 @@ const Home = () => {
             <div className='my-16'>
 
              <h1 className='text-center text-5xl my-6 text-sky-500' data-aos='fade-up'>UPCOMING EVENT</h1>
-
+              <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-10'>
+                  {data.map(dat=><Events key={dat.id} dat={dat}></Events>)}
+              </div>
             </div>
         </div>
     );

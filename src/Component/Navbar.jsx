@@ -13,7 +13,7 @@ const Navbar = () => {
           console.error(error);
         }
       };
-    console.log(user.photoURL)
+    
     const link = <>
         <li className='font-semibold text-xl text-white'><NavLink to='/'>home</NavLink></li>
         <li className='font-semibold text-xl text-white'><NavLink to='/error'>error</NavLink></li>

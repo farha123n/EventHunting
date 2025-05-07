@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router';
+import { NavLink, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'react-toastify';
 
 const Register = () => {
     const {createUser,setUser,updateUser}=useContext(AuthContext)
+    const navigate=useNavigate()
     const handleRegister=(e)=>{
        e.preventDefault()
        const form=e.target
@@ -13,6 +14,23 @@ const Register = () => {
        const photo=form.photo.value
        const password=form.password.value
        console.log(name)
+       const regex1 = /^(?=.*[A-Z])/;
+       const regex2 = /^(?=.*[a-z])/;
+
+       if(!regex1.test(password))
+       {
+        toast.error('at least a upper case required')
+        return
+       }
+       else if(!regex2.test(password)){
+        toast.error('at least a lower case required ')
+        return
+       }
+       else if(password.length<6){
+        toast.error('password must be at least 6 charecter')
+        return
+       }
+
        createUser(email,password).then((res)=>{
         const user=res.user
         
@@ -22,6 +40,7 @@ const Register = () => {
            setUser(user)
            console.log(user)
            toast.success('registered done successfully')
+           navigate('/')
        }).catch((error) => {
         // An error occurred
         // ...
@@ -49,7 +68,7 @@ const Register = () => {
 
                     <div className="mb-4">
                         <label htmlFor="photo" className="block text-gray-700 mb-1">Photo URL</label>
-                        <input id="photo" name="photo" type="url" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" />
+                        <input id="photo" name="photo" type="url" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" required />
                     </div>
 
 

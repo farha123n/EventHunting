@@ -1,11 +1,13 @@
 import React, { useContext, useState } from 'react';
-import { NavLink } from 'react-router';
+import { NavLink, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
 
     const {logIn}=useContext(AuthContext)
+    const location=useLocation()
+    const navigate=useNavigate()
     console.log(logIn)
      const [errormsg,setErrormsg]=useState('')
     const handleLogin=(e)=>{
@@ -16,7 +18,8 @@ const Login = () => {
             setErrormsg('')
             logIn(email,password).then((user)=>{
                 console.log(user)
-                 toast.success("User successfully LoggedIn!");           
+                 toast.success("User successfully LoggedIn!");
+                 navigate(`${location.state?location.state:'/'}`)           
             }) .catch((error) => {
                 const errorCode = error.code;
                  setErrormsg(error.message)
