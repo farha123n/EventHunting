@@ -20,10 +20,7 @@ export  const  router=createBrowserRouter([
     Component: Root,
     children: [
       { index: true, Component: Home, loader:()=>fetch('/event.json') },
-      {
-        path:'/error',
-        Component:Error
-      },
+     
       {
         path:'/profile',element:<PrivateRoute><Profile></Profile></PrivateRoute>
       },
@@ -52,7 +49,13 @@ export  const  router=createBrowserRouter([
       {
         path:'/forget-password',element:<ForgetPassword></ForgetPassword>
       }
-    ]
+    ],
+   
+  },
+  {
+    path:'/error',
+    Component:Error
   }
+
 
 ])

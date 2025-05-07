@@ -4,6 +4,9 @@ import 'aos/dist/aos.css';
 import { useLoaderData } from 'react-router';
 import Events from '../Component/Events';
 import { Helmet } from 'react-helmet-async';
+import { FaSun } from "react-icons/fa6";
+import { TiTick } from "react-icons/ti";
+import eventImg from '../assets/Event.PNG'
 const Home = () => {
 
     const data=useLoaderData()
@@ -55,6 +58,37 @@ const Home = () => {
                   {data.map(dat=><Events key={dat.id} dat={dat}></Events>)}
               </div>
             </div>
+            <section className='my-16 mx-auto p-8'>
+                <h1 className='text-4xl text-sky-500 text-center m-12' data-aos='fade-right'>Why should you join our event</h1>
+               <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+               <div className='bg-sky-500 m-4 p-4' data-aos='fade-up'>
+                     <h1 className='text-xl my-3 text-white mx-2'>Learn From Industry Experts</h1>
+                     <p  className='text-sm p-2 m-2 text-slate-200'>Get direct insights and practical knowledge from seasoned professionals who’ve been where you want to go.</p>
+                </div>
+               <div className='bg-violet-600 m-4 p-4' data-aos='fade-up'>
+                     <h1 className='text-xl text-white my-3 mx-2'>Network With Like-Minded People</h1>
+                     <p className='text-sm p-2 m-2 text-slate-200'>Meet participants who share your interests, goals, and passions – build valuable connections and even future collaborations..</p>
+                </div>
+               <div className='bg-cyan-600 m-4 p-4' data-aos='fade-up'>
+                     <h1 className='text-xl text-white my-3 mx-2'> Real-World Experience & Takeaways</h1>
+                     <p  className='text-sm p-2 m-2 text-slate-200'>Participate in hands-on sessions, Q&As, and interactive activities that offer practical skills and fresh perspectives you can use right away</p>
+                </div>
+               </div>
+            </section>
+             <section className='my-16 mx-auto p-8 md:flex bg-blue-600'>
+             <div>
+             <h1 className='text-8xl  p-8 text-white font-semibold text-center'>Event Champ</h1>
+               <p className='text-5xl flex mx-4 my-8 text-white'><FaSun className='text-orange-500 text-4xl mx-6 mt-2' /> Best Event Conference </p>
+               <p className='my-4 flex   text-white'><TiTick className='text-white mx-4 text-4xl mb-2 ' /> <span className='text-3xl'>multiple event listing</span></p>
+               <p className='my-4 flex   text-white'><TiTick className='text-white mx-4 text-4xl mb-2 ' /> <span className='text-3xl'>Recurring events, schedules and tickets </span></p>
+               <p className='my-4 flex   text-white'><TiTick className='text-white mx-4 text-4xl mb-2 ' /> <span className='text-3xl'>Speaker, Venues and organizer</span></p>
+               <p className='my-4 flex   text-white'><TiTick className='text-white mx-4 text-4xl mb-2 ' /> <span className='text-3xl'>Ticket sales, event importer and sponsors</span></p>
+               <p className='my-4 flex   text-white'><TiTick className='text-white mx-4 text-4xl mb-2 ' /> <span className='text-3xl'>Event Calender And Search System</span></p>
+             </div>
+             <div className='flex flex-col items-center justify-center lg:ml-28'>
+                <img src={eventImg} alt="" />
+             </div>
+             </section >
         </div>
     );
 };

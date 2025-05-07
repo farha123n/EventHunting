@@ -40,6 +40,9 @@ const Login = () => {
               const user = result.user;
               // IdP data available using getAdditionalUserInfo(result)
               // ...
+              toast.success("login successfull")
+              navigate('/')
+
           }).catch((error) => {
               // Handle Errors here.
               const errorCode = error.code;

@@ -69,6 +69,7 @@ const Register = () => {
                   const user = result.user;
                   // IdP data available using getAdditionalUserInfo(result)
                   // ...
+                  toast.success("login successfull")
               }).catch((error) => {
                   // Handle Errors here.
                   const errorCode = error.code;
@@ -79,6 +80,7 @@ const Register = () => {
                   // The AuthCredential type that was used.
                   const credential = GoogleAuthProvider.credentialFromError(error);
                   // ...
+                  navigate('/')
               });
       }
   
