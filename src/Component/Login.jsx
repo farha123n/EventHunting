@@ -2,9 +2,9 @@ import React, { useContext, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
-
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 const Login = () => {
-
+    const provider = new GoogleAuthProvider();
     const {logIn}=useContext(AuthContext)
     const location=useLocation()
     const navigate=useNavigate()
@@ -25,6 +25,30 @@ const Login = () => {
                  setErrormsg(error.message)
               });
     }
+    const handleGoogleSignIN = () => {
+       
+        console.log('star')
+      const auth = getAuth();
+      signInWithPopup(auth, provider)
+          .then((result) => {
+              // This gives you a Google Access Token. You can use it to access the Google API.
+              const credential = GoogleAuthProvider.credentialFromResult(result);
+              const token = credential.accessToken;
+              // The signed-in user info.
+              const user = result.user;
+              // IdP data available using getAdditionalUserInfo(result)
+              // ...
+          }).catch((error) => {
+              // Handle Errors here.
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              // The email of the user's account used.
+              const email = error.customData.email;
+              // The AuthCredential type that was used.
+              const credential = GoogleAuthProvider.credentialFromError(error);
+              // ...
+          });
+  }
     return (
         <div className='flex justify-center items-center min-h-screen'>
             <div>
@@ -47,6 +71,17 @@ const Login = () => {
                     </button>
                     <p className='text-red-500'>{errormsg}</p>
                 </form>
+                <div className="flex items-center my-6">
+                    <div className="flex-grow h-px bg-gray-300"></div>
+                    <span className="px-3 text-gray-500 text-sm">or</span>
+                    <div className="flex-grow h-px bg-gray-300"></div>
+                </div>
+
+
+                <button onClick={ handleGoogleSignIN} className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google logo" className="w-5 h-5" />
+                    <span className="text-sm font-medium text-gray-700">Continue with Google</span>
+                </button>
                 <p className="mt-4 text-sm text-center text-gray-600">
                     Don't have an account?
                     <NavLink to="/register" className="text-sky-600 hover:underline">Sign up</NavLink>

@@ -7,6 +7,7 @@ import Login from "../Component/Login";
 import Register from "../Component/Register";
 import EventDetails from "../Component/EventDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import UserProfile from "../Pages/UserProfile";
 
 
 
@@ -22,7 +23,7 @@ export  const  router=createBrowserRouter([
         Component:Error
       },
       {
-        path:'/profile',Component:Profile
+        path:'/profile',element:<PrivateRoute><Profile></Profile></PrivateRoute>
       },
       {
         path:'/login',Component:Login
@@ -36,6 +37,12 @@ export  const  router=createBrowserRouter([
         <EventDetails></EventDetails>
        </PrivateRoute>,
         loader:()=>fetch('/event.json')
+      },
+      {
+        path:'/user-profile',
+        element:<PrivateRoute>
+          <UserProfile></UserProfile>
+        </PrivateRoute>
       }
     ]
   }

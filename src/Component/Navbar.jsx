@@ -17,7 +17,8 @@ const Navbar = () => {
     const link = <>
         <li className='font-semibold text-xl text-white'><NavLink to='/'>home</NavLink></li>
         <li className='font-semibold text-xl text-white'><NavLink to='/error'>error</NavLink></li>
-        <li className='font-semibold text-xl text-white'><NavLink to='/profile'>profile</NavLink></li>
+      {user && <li className='font-semibold text-xl text-white'><NavLink to='/profile'>Update profile</NavLink></li>}
+      {user&& <li className='font-semibold text-xl text-white'><NavLink to='/user-profile'>your profile</NavLink></li>}  
     </>
     return (
         <div>

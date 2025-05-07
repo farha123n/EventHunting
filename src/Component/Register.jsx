@@ -4,49 +4,50 @@ import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'react-toastify';
 
 const Register = () => {
-    const {createUser,setUser,updateUser}=useContext(AuthContext)
-    const navigate=useNavigate()
-    const handleRegister=(e)=>{
-       e.preventDefault()
-       const form=e.target
-       const name=form.name.value
-       const email=form.email.value
-       const photo=form.photo.value
-       const password=form.password.value
-       console.log(name)
-       const regex1 = /^(?=.*[A-Z])/;
-       const regex2 = /^(?=.*[a-z])/;
+    
+    const { createUser, setUser, updateUser } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const handleRegister = (e) => {
+        e.preventDefault()
+        const form = e.target
+        const name = form.name.value
+        const email = form.email.value
+        const photo = form.photo.value
+        const password = form.password.value
+        console.log(name)
+        const regex1 = /^(?=.*[A-Z])/;
+        const regex2 = /^(?=.*[a-z])/;
 
-       if(!regex1.test(password))
-       {
-        toast.error('at least a upper case required')
-        return
-       }
-       else if(!regex2.test(password)){
-        toast.error('at least a lower case required ')
-        return
-       }
-       else if(password.length<6){
-        toast.error('password must be at least 6 charecter')
-        return
-       }
+        if (!regex1.test(password)) {
+            toast.error('at least a upper case required')
+            return
+        }
+        else if (!regex2.test(password)) {
+            toast.error('at least a lower case required ')
+            return
+        }
+        else if (password.length < 6) {
+            toast.error('password must be at least 6 charecter')
+            return
+        }
 
-       createUser(email,password).then((res)=>{
-        const user=res.user
-        
-        updateUser({displayName:name,photoURL:photo}).then(()=>{
-            setUser({...user,displayName:name,photoURL:photo})
-        })
-           setUser(user)
-           console.log(user)
-           toast.success('registered done successfully')
-           navigate('/')
-       }).catch((error) => {
-        // An error occurred
-        // ...
-        console.log(error)
-      });
+        createUser(email, password).then((res) => {
+            const user = res.user
+
+            updateUser({ displayName: name, photoURL: photo }).then(() => {
+                setUser({ ...user, displayName: name, photoURL: photo })
+            })
+            setUser(user)
+            console.log(user)
+            toast.success('registered done successfully')
+            navigate('/')
+        }).catch((error) => {
+            // An error occurred
+            // ...
+            console.log(error)
+        });
     }
+  
     return (
         <div className='flex justify-center items-center min-h-screen'>
             <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
@@ -84,17 +85,7 @@ const Register = () => {
                 </form>
 
 
-                <div className="flex items-center my-6">
-                    <div className="flex-grow h-px bg-gray-300"></div>
-                    <span className="px-3 text-gray-500 text-sm">or</span>
-                    <div className="flex-grow h-px bg-gray-300"></div>
-                </div>
-
-
-                <button className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google logo" className="w-5 h-5" />
-                    <span className="text-sm font-medium text-gray-700">Continue with Google</span>
-                </button>
+             
 
 
                 <p className="mt-4 text-sm text-center text-gray-600">
