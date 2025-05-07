@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useLoaderData } from 'react-router';
 import Events from '../Component/Events';
+import { Helmet } from 'react-helmet-async';
 const Home = () => {
 
     const data=useLoaderData()
@@ -11,7 +12,11 @@ const Home = () => {
         AOS.init({ duration: 1000 });
     }, []);
     return (
+        
         <div>
+             <Helmet>
+                            <title>Event | Home</title>
+                        </Helmet>
             <div className=' text-center text-sky-700 text-5xl p-8 m-4 w-11/12 mx-auto' data-aos='fade-left'>Explore the best events happening near you</div>
             <div className='my-14 mx-auto w-4/5 ' data-aos='fade-up'>
                 <div className="carousel w-full">

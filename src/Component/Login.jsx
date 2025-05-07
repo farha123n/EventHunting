@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast, ToastContainer } from 'react-toastify';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { Helmet } from 'react-helmet-async';
 const Login = () => {
     const provider = new GoogleAuthProvider();
     const {logIn}=useContext(AuthContext)
@@ -25,7 +26,7 @@ const Login = () => {
                  setErrormsg(error.message)
               });
     }
-    const handleGoogleSignIN = () => {
+   const handleGoogleSignIN = () => {
        
         console.log('star')
       const auth = getAuth();
@@ -51,6 +52,9 @@ const Login = () => {
   }
     return (
         <div className='flex justify-center items-center min-h-screen'>
+                <Helmet>
+                            <title>Event | Login</title>
+                        </Helmet>
             <div>
        
        
@@ -69,7 +73,7 @@ const Login = () => {
                     <button type="submit" className="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-lg transition duration-200">
                         Sign In
                     </button>
-                    <p className='text-red-500'>{errormsg}</p>
+                     <p className='text-red-500'>{errormsg}</p>
                 </form>
                 <div className="flex items-center my-6">
                     <div className="flex-grow h-px bg-gray-300"></div>

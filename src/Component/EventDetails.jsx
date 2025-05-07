@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useLoaderData, useParams } from 'react-router';
 import { toast } from 'react-toastify'; // for success message
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,6 +25,9 @@ const EventDetails = () => {
 
   return (
     <div className="flex flex-col items-center gap-10 py-8">
+            <Helmet>
+                            <title>Event | Event Details</title>
+                        </Helmet>
       {/* Event Card */}
       <div className="card bg-base-100 w-96 shadow-sm" data-aos="fade-up">
         <figure>

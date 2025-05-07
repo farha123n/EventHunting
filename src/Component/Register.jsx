@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { Helmet } from 'react-helmet-async';
 const Register = () => {
     const provider = new GoogleAuthProvider();
     const { createUser, setUser, updateUser } = useContext(AuthContext)
@@ -74,6 +75,9 @@ const Register = () => {
   
     return (
         <div className='flex justify-center items-center min-h-screen'>
+                <Helmet>
+                            <title>Event | Register</title>
+                        </Helmet>
             <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
                 <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Create an Account</h2>
 
@@ -99,7 +103,10 @@ const Register = () => {
 
                     <div className="mb-6">
                         <label htmlFor="password" className="block text-gray-700 mb-1">Password</label>
-                        <input id="password" name='password' type="password" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" required />
+                       <div className='relative'>
+                       <input id="password" name='password' type="password" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" required />
+                       <button className='btn btn-sm absolute right-4 top-2'>e</button>
+                       </div>
                     </div>
 
 

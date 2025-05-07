@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
+import { Helmet } from 'react-helmet-async';
 
 const Profile = () => {
     const {user,setUser,updateUser}=useContext(AuthContext)
@@ -20,6 +21,9 @@ const Profile = () => {
    
     return (
         <div className='p-10'>
+                <Helmet>
+                            <title>Event | Profile</title>
+                        </Helmet>
             <form onSubmit={handleUpdate}>
 
                 <div className="mb-4">

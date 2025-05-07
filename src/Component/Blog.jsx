@@ -1,8 +1,12 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Blog = () => {
     return (
         <div>
+                <Helmet>
+                            <title>Event | Blogs</title>
+                        </Helmet>
             <div className="collapse collapse-plus bg-base-100 border border-base-300">
                 <input type="radio" name="my-accordion-3" defaultChecked />
                 <div className="collapse-title font-semibold">What is the event happening this weekend near me?</div>
