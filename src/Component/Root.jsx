@@ -6,13 +6,14 @@ import { ToastContainer } from 'react-toastify';
 
 const Root = () => {
     return (
-        <div>
-
-            <Navbar></Navbar>
-            <ToastContainer autoClose={3000} />
-            <Outlet></Outlet>
-            <Footer></Footer>
-        </div>
+        <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <ToastContainer autoClose={3000} />
+        <main className="flex-grow">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     );
 };
 

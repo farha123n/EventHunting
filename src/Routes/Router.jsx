@@ -8,6 +8,7 @@ import Register from "../Component/Register";
 import EventDetails from "../Component/EventDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import UserProfile from "../Pages/UserProfile";
+import Blog from "../Component/Blog";
 
 
 
@@ -43,6 +44,9 @@ export  const  router=createBrowserRouter([
         element:<PrivateRoute>
           <UserProfile></UserProfile>
         </PrivateRoute>
+      },
+      {
+        path:'/blogs',element:<PrivateRoute><Blog></Blog></PrivateRoute>
       }
     ]
   }
