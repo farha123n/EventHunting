@@ -1,0 +1,34 @@
+import { createBrowserRouter } from "react-router";
+import Root from "../Component/Root";
+import Home from "../Pages/Home";
+import Error from "../Pages/Error";
+import Profile from "../Pages/Profile";
+import Login from "../Component/Login";
+import Register from "../Component/Register";
+
+
+
+
+export  const  router=createBrowserRouter([
+  {
+    path: "/",
+    Component: Root,
+    children: [
+      { index: true, Component: Home },
+      {
+        path:'/error',
+        Component:Error
+      },
+      {
+        path:'/profile',Component:Profile
+      },
+      {
+        path:'/login',Component:Login
+      },
+      {
+        path:'/register',Component:Register
+      }
+    ]
+  }
+
+])

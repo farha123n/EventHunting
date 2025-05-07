@@ -1,0 +1,90 @@
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router';
+import { AuthContext } from '../Provider/AuthProvider';
+import { toast } from 'react-toastify';
+
+const Register = () => {
+    const {createUser,setUser,updateUser}=useContext(AuthContext)
+    const handleRegister=(e)=>{
+       e.preventDefault()
+       const form=e.target
+       const name=form.name.value
+       const email=form.email.value
+       const photo=form.photo.value
+       const password=form.password.value
+       console.log(name)
+       createUser(email,password).then((res)=>{
+        const user=res.user
+        
+        updateUser({displayName:name,photoURL:photo}).then(()=>{
+            setUser({...user,displayName:name,photoURL:photo})
+        })
+           setUser(user)
+           console.log(user)
+           toast.success('registered done successfully')
+       }).catch((error) => {
+        // An error occurred
+        // ...
+        console.log(error)
+      });
+    }
+    return (
+        <div className='flex justify-center items-center min-h-screen'>
+            <div className="bg-white p-8 rounded-xl shadow-xl w-full max-w-md">
+                <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Create an Account</h2>
+
+                <form onSubmit={handleRegister}>
+
+                    <div className="mb-4">
+                        <label htmlFor="name" className="block text-gray-700 mb-1">Name</label>
+                        <input id="name" name='name' type="text" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" required />
+                    </div>
+
+
+                    <div className="mb-4">
+                        <label htmlFor="email" className="block text-gray-700 mb-1">Email</label>
+                        <input id="email" name='email' type="email" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" required />
+                    </div>
+
+
+                    <div className="mb-4">
+                        <label htmlFor="photo" className="block text-gray-700 mb-1">Photo URL</label>
+                        <input id="photo" name="photo" type="url" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" />
+                    </div>
+
+
+                    <div className="mb-6">
+                        <label htmlFor="password" className="block text-gray-700 mb-1">Password</label>
+                        <input id="password" name='password' type="password" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" required />
+                    </div>
+
+
+                    <button type="submit" className="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-lg transition duration-200">
+                        Register
+                    </button>
+                </form>
+
+
+                <div className="flex items-center my-6">
+                    <div className="flex-grow h-px bg-gray-300"></div>
+                    <span className="px-3 text-gray-500 text-sm">or</span>
+                    <div className="flex-grow h-px bg-gray-300"></div>
+                </div>
+
+
+                <button className="w-full flex items-center justify-center gap-2 border border-gray-300 py-2 rounded-lg hover:bg-gray-100 transition">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google logo" className="w-5 h-5" />
+                    <span className="text-sm font-medium text-gray-700">Continue with Google</span>
+                </button>
+
+
+                <p className="mt-4 text-sm text-center text-gray-600">
+                    Already have an account?
+                    <NavLink to="/login" className="text-sky-600 hover:underline">Login here</NavLink>
+                </p>
+            </div>
+        </div>
+    );
+};
+
+export default Register;
