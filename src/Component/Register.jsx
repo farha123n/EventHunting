@@ -1,12 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
 import { toast } from 'react-toastify';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { Helmet } from 'react-helmet-async';
+import { FaEye } from 'react-icons/fa';
+import { IoMdEyeOff } from "react-icons/io";
 const Register = () => {
     const provider = new GoogleAuthProvider();
-    const { createUser, setUser, updateUser } = useContext(AuthContext)
+    const { createUser, setUser, updateUser,email,setEmail } = useContext(AuthContext)
+    const [showPassword,setShowPassword]=useState(false)
+    
+    const handleChange = (e) => {
+        setEmail(e.target.value);
+      };
     const navigate = useNavigate()
     const handleRegister = (e) => {
         e.preventDefault()
@@ -46,6 +53,7 @@ const Register = () => {
             // An error occurred
             // ...
             console.log(error)
+            toast.error(error.message)
         });
     }
      const handleGoogleSignIN = () => {
@@ -65,6 +73,7 @@ const Register = () => {
                   // Handle Errors here.
                   const errorCode = error.code;
                   const errorMessage = error.message;
+                  toast.error(errorMessage)
                   // The email of the user's account used.
                   const email = error.customData.email;
                   // The AuthCredential type that was used.
@@ -91,7 +100,7 @@ const Register = () => {
 
                     <div className="mb-4">
                         <label htmlFor="email" className="block text-gray-700 mb-1">Email</label>
-                        <input id="email" name='email' type="email" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" required />
+                        <input id="email" onChange={handleChange} name='email' type="email" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" required />
                     </div>
 
 
@@ -104,12 +113,12 @@ const Register = () => {
                     <div className="mb-6">
                         <label htmlFor="password" className="block text-gray-700 mb-1">Password</label>
                        <div className='relative'>
-                       <input id="password" name='password' type="password" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" required />
-                       <button className='btn btn-sm absolute right-4 top-2'>e</button>
+                       <input id="password" name='password' type={showPassword?"text":"password"} className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-400" required />
+                       <button onClick={()=>setShowPassword(!showPassword)} className='btn btn-sm absolute right-4 top-2'>{showPassword?<IoMdEyeOff />:<FaEye />}</button>
                        </div>
                     </div>
 
-
+                     <NavLink to='/forget-password'> <p className='underline underline-offset-1 mb-5'>Forget password</p></NavLink>
                     <button type="submit" className="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-lg transition duration-200">
                         Register
                     </button>

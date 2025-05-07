@@ -24,6 +24,7 @@ const Login = () => {
             }) .catch((error) => {
                 const errorCode = error.code;
                  setErrormsg(error.message)
+                 toast.error(errorMessage)
               });
     }
    const handleGoogleSignIN = () => {

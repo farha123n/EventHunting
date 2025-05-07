@@ -9,6 +9,7 @@ import EventDetails from "../Component/EventDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import UserProfile from "../Pages/UserProfile";
 import Blog from "../Component/Blog";
+import ForgetPassword from "../Pages/ForgetPassword";
 
 
 
@@ -47,6 +48,9 @@ export  const  router=createBrowserRouter([
       },
       {
         path:'/blogs',element:<PrivateRoute><Blog></Blog></PrivateRoute>
+      },
+      {
+        path:'/forget-password',element:<ForgetPassword></ForgetPassword>
       }
     ]
   }
