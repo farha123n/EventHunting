@@ -10,6 +10,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import UserProfile from "../Pages/UserProfile";
 import Blog from "../Component/Blog";
 import ForgetPassword from "../Pages/ForgetPassword";
+import Loader from "../Component/Loader";
 
 
 
@@ -19,7 +20,7 @@ export  const  router=createBrowserRouter([
     path: "/",
     Component: Root,
     children: [
-      { index: true, Component: Home, loader:()=>fetch('/event.json') },
+      { index: true, Component: Home, loader:()=>fetch('/event.json'),hydrateFallbackElement:<Loader></Loader> },
      
       {
         path:'/profile',element:<PrivateRoute><Profile></Profile></PrivateRoute>
@@ -35,7 +36,7 @@ export  const  router=createBrowserRouter([
        element:<PrivateRoute>
         <EventDetails></EventDetails>
        </PrivateRoute>,
-        loader:()=>fetch('/event.json')
+        loader:()=>fetch('/event.json'),hydrateFallbackElement:<Loader></Loader>
       },
       {
         path:'/user-profile',
