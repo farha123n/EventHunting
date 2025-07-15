@@ -3,13 +3,13 @@ Website name:Eventsphere
 Description:
 its a event hunting website where you can find best events near future
 Live Demo:https://event-bafb6.web.app
-Features
+#Features
 1. user can see upcoming events
 2. Authenticated used can see details
 
 
 
-Technologies
+#Technologies
 React firebase
 installations
 react,react router,tailwind, daisy ui firebase
