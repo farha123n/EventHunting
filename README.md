@@ -6,6 +6,9 @@ Live Demo:https://event-bafb6.web.app
 Features
 1. user can see upcoming events
 2. Authenticated used can see details
+
+
+
 Technologies
 React firebase
 installations
